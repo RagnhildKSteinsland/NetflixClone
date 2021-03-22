@@ -40,7 +40,22 @@ struct MovieDetailView: View {
                             .frame(width: screen.width / 2.5)
                         
                         MovieInfoSubHeadline(movie: movie)
+                        
+                        if movie.promotionHeadline != nil {
+                            Text(movie.promotionHeadline!)
+                                .bold()
+                                .font(.headline)
+                        }
+                        
+                        PlayButtonView(text: "Play", imageName: "play.fill", backgroundColor: .red) {
+                            // ACTION
+                        }
+                        
+                        //CURRENT EPISODE INFORMATION
+                        //1. DEFAULT
+                        //2. PERSONALIZED
                     }
+                    .padding(.horizontal, 10)
                 }
                 
                 Spacer()
@@ -52,7 +67,7 @@ struct MovieDetailView: View {
 
 struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieDetailView(movie: exampleMovie3)
+        MovieDetailView(movie: exampleMovie2)
     }
 }
 

@@ -63,7 +63,7 @@ struct TopMoviePreviewView: View {
                     
                     Spacer()
                     
-                    WhiteButtonView(text: "Play", imageName: "play.fill") {
+                    PlayButtonView(text: "Play", imageName: "play.fill") {
                         //Action
                     }
                     .frame(width: 120)
