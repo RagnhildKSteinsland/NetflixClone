@@ -52,9 +52,32 @@ struct MovieDetailView: View {
                         }
                         
                         //CURRENT EPISODE INFORMATION
-                        //1. DEFAULT
-                        //2. PERSONALIZED
+                        CurrentEpsiodeInformation(movie: movie)
+                        
+                        CastInfo(movie: movie)
+                        
+                        HStack(spacing: 60) {
+                            SmallVerticalButtonView(text: "MY LIST", isOnImage: "checkmark", isOffImage: "plus", isOn: true) {
+                                //ACTION
+                            }
+                            
+                            SmallVerticalButtonView(text: "Rate", isOnImage: "hand.thumbsup.fill", isOffImage: "hand.thumbsup", isOn: true) {
+                                //ACTION
+                            }
+                            
+                            SmallVerticalButtonView(text: "Share", isOnImage: "square.and.arrow.up", isOffImage: "square.and.arrow.up", isOn: true) {
+                                //ACTION
+                            }
+                            
+                            Spacer()
+                            
+                        }
+                        .padding(.leading, 20)
+                        
+                        
+                        //CustomTabSwitcherView
                     }
+
                     .padding(.horizontal, 10)
                 }
                 
@@ -67,9 +90,12 @@ struct MovieDetailView: View {
 
 struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieDetailView(movie: exampleMovie2)
+        MovieDetailView(movie: exampleMovie4)
     }
 }
+
+
+
 
 struct MovieInfoSubHeadline: View {
     var movie: Movie
@@ -103,5 +129,51 @@ struct RatingView: View {
                 .bold()
         }
         .frame(width: 50, height: 20)
+    }
+}
+
+struct CastInfo: View {
+    var movie: Movie
+    var body: some View {
+        VStack(spacing: 3) {
+            HStack {
+                
+                Text("Cast: \(movie.cast)")
+                
+                Spacer()
+                
+            }
+            HStack {
+                
+                Text("Creators: \(movie.creators)")
+                
+                Spacer()
+            }
+            
+        }
+        .font(.caption)
+        .foregroundColor(.gray)
+        .padding(.vertical, 10)
+    }
+}
+
+struct CurrentEpsiodeInformation: View {
+    var movie: Movie
+    var body: some View {
+        Group {
+            HStack {
+                Text(movie.episodeInfoDisplay)
+                    .bold()
+                
+                Spacer()
+            }
+            .padding(.vertical, 4)
+            HStack {
+                Text(movie.episodeDescription)
+                    .font(.subheadline)
+                
+                Spacer()
+            }
+        }
     }
 }
