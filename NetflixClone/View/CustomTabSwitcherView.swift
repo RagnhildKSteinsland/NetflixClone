@@ -15,6 +15,8 @@ struct CustomTabSwitcherView: View {
     var tabs: [CustumTab]
     var movie: Movie
     
+    @Binding var showSeasonPicker: Bool
+    @Binding var selectedSeason: Int
     //:FUNCTIONS
     
     func widthForTab(_ tab: CustumTab) -> CGFloat {
@@ -52,7 +54,7 @@ struct CustomTabSwitcherView: View {
             //Selected view
             switch currentTab {
             case .episodes:
-                Text("EPISODES")
+                EpisodeView(episodes: movie.episodes ?? [], showSeasonPicker: $showSeasonPicker, selectedSeason: $selectedSeason)
             case .trailers:
                 TrailerView(trailers: movie.trailers)
             case .more:
@@ -76,7 +78,7 @@ struct CustomTabSwitcherView_Previews: PreviewProvider {
             Color.black
                 .edgesIgnoringSafeArea(.all)
             
-            CustomTabSwitcherView(tabs: [.episodes, .trailers, .more], movie: exampleMovie1)
+            CustomTabSwitcherView(tabs: [.episodes, .trailers, .more], movie: exampleMovie1, showSeasonPicker: .constant(false), selectedSeason: .constant(1))
         }
     }
 }
