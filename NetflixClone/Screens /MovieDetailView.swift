@@ -17,6 +17,8 @@ struct MovieDetailView: View {
     @State private var showSeasonPicker = false
     @State private var selectedSeason = 1
     
+    @Binding var movieDetailToShow: Movie?
+    
     
     //: BODY
     var body: some View {
@@ -31,6 +33,7 @@ struct MovieDetailView: View {
                         
                         Button(action: {
                             //CLOSE THIS VIEW
+                            movieDetailToShow = nil
                         }, label: {
                             Image(systemName: "xmark.circle")
                                 .font(.system(size: 28))
@@ -133,7 +136,7 @@ struct MovieDetailView: View {
 
 struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieDetailView(movie: exampleMovie1)
+        MovieDetailView(movie: exampleMovie1, movieDetailToShow: .constant(nil))
     }
 }
 

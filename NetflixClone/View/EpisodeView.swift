@@ -30,7 +30,7 @@ struct EpisodeView: View {
                     showSeasonPicker = true
                 }, label: {
                     Group {
-                        Text("Season 1")
+                        Text("Season \(selectedSeason)")
                         
                         Image(systemName: "chevron.down")
                     }
@@ -46,8 +46,9 @@ struct EpisodeView: View {
                 VStack(alignment: .leading) {
                     //HStack with preview image
                     HStack {
-                        VideoPreviewView(imageURL: episode.videoURL, videoURL: episode.thumbnailURL)
+                        VideoPreviewView(imageURL: episode.thumbnailURL, videoURL: episode.videoURL)
                             .frame(width: 120, height: 70)
+                            .clipped()
                         VStack(alignment: .leading) {
                             Text("\(episode.episodeNumber). \(episode.name)")
                                 .font(.system(size: 16))
